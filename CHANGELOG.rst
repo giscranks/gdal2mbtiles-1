@@ -2,9 +2,27 @@
 Release Notes
 =============
 
+Upcoming
+--------
+
+* Fix pyvips issue
+* Fix renderer tests
+* Fix deprecation warnings
+* Fix python3.7+ pytest errors
+* Update author email
+* Update CI
+
+2.1.2
+-----
+
+* Update docs
+* Pin pyvips
+
 2.1.1
 -----
-Revert commit f7fde54, which reintroduced tiling issues fixed by 9231133.
+
+* Revert commit f7fde54, which reintroduced tiling issues fixed by 9231133.
+
 
 2.1.0
 -----

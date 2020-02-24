@@ -1,6 +1,9 @@
-======================================================
- Convert GDAL-readable datasets into an MBTiles file.
-======================================================
+============
+gdal2mbtiles
+============
+
+Convert GDAL-readable datasets into an MBTiles file
+===================================================
 
 **gdal2mbtiles** helps you generate web mapping tiles that can be shown
 through a browser-based mapping library on your website.
@@ -61,16 +64,29 @@ External Dependencies
 
 We rely on GDAL_ to read georeferenced datasets.
 
-Under Debian or Ubuntu, run the following to install it::
+Under Debian or Ubuntu, you first need to install the GDAL library & binary:
 
-    $ sudo add-apt-repository ppa:ubuntugis/ppa && sudo apt-get update
-    $ sudo apt-get install gdal-bin libgdal-dev
+.. code-block:: sh
 
+    sudo add-apt-repository ppa:ubuntugis/ppa && sudo apt-get update
+    sudo apt-get install gdal-bin libgdal-dev
 
-You will need to install the PyPi GDAL package with the following options::
+The ubuntugis PPA also usually includes ``python-gdal`` or ``python3-gdal``
+that will install the python bindings at the system level. If you aren't
+planning to use a non-default python or a virtual environment then installing
+that may be enough for you.
 
-    $ pip install --global-option=build_ext --global-option=--gdal-config=/usr/bin/gdal-config --global-option=--include-dirs=/usr/include/gdal/ GDAL==$(GDAL_VERSION)
+Otherwise, you will also need to install the GDAL python bindings package from
+`PyPI`_. Make sure to install the version that matches the installed GDAL
+library. You can double-check that version with ``gdal-config --version``.
 
+.. code-block:: sh
+
+    GDAL_VERSION=$(gdal-config --version) pip install \
+      --global-option=build_ext \
+      --global-option=--gdal-config=/usr/bin/gdal-config \
+      --global-option=--include-dirs=/usr/include/gdal/ \
+      GDAL==${GDAL_VERSION}
 
 We also rely on VIPS_ (version 8.2+) to do fast image processing.
 
@@ -176,6 +192,7 @@ support of Ecometrica_.
 
 .. _GDAL: http://www.gdal.org/
 .. _VIPS: http://www.vips.ecs.soton.ac.uk/
+.. _PyPI: https://https://pypi.org/project/GDAL/
 
 .. _issue tracker: https://github.com/ecometrica/gdal2mbtiles/issues
 .. _Ecometrica: http://ecometrica.com/
