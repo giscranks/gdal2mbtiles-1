@@ -105,11 +105,6 @@ workflows:
   xenial:
     jobs:
       - test:
-          name: test-xenial-py2
-          executor: xenial
-          tox: py2
-
-      - test:
           name: test-xenial
           executor: xenial
 
@@ -117,6 +112,18 @@ workflows:
           name: test-xenial-stablegis
           executor: xenial
           ubuntugis: stable
+
+      - test:
+          name: test-xenial-stablegis-py2
+          executor: xenial
+          ubuntugis: stable
+          tox: py2
+
+      - test:
+          name: test-xenial-stablegis-vips
+          executor: xenial
+          ubuntugis: stable
+          tox: vips
 
       - test:
           name: test-xenial-unstablegis
