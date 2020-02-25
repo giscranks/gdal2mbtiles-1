@@ -27,17 +27,22 @@ commands:
   install-system-packages:
     steps:
       - run:
-          name: Install system packages
+          name: Install most system packages
           command: |
             apt-get update && apt-get install -y \
               libgdal-dev \
               gdal-bin \
-              libvips \
-              libvips-dev \
               libtiff5 \
               optipng \
               pngquant \
               python3-pip \
+
+      - run:
+          name: Install libvips
+          command: |
+            apt-get install -y --no-install-recommends \
+              libvips \
+              libvips-dev \
 
   run-tox-tests:
     parameters:
